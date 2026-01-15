@@ -86,6 +86,12 @@ const update = (req, res) => {
     return;
   }
 
+  if (!spentAt && !title && !amount && !category && !note) {
+    res.status(400).json({ error: 'At least one field is required' });
+
+    return;
+  }
+
   const updatedExpense = expensesService.update({
     id,
     spentAt,
